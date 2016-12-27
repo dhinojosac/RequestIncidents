@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "com.dhinojosac.android.requestincidents"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+ext {
+    retrofitVersion = '2.1.0'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.0.0'
+
+    //rest interactions
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    //JSON Parsing
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    //http logging
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
+
+    // Injections
+    compile 'com.google.dagger:dagger:2.7'
+    apt 'com.google.dagger:dagger-compiler:2.7'
+    provided 'javax.annotation:jsr250-api:1.0'
+}
